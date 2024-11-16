@@ -3,8 +3,10 @@ const cookieToken = (user, res) => {
 
     const options = {
         expires: new Date(Date.now() + 100 * 24 * 60 * 60 * 1000), // Multiply by 1000 to convert seconds to milliseconds
-        httpOnly: true
-    };
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+      };
 
     res.cookie('token', token, options);
 
